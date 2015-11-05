@@ -5,7 +5,7 @@ questkit.ui = {};
 
 String.prototype.format = function () {
 	var args = arguments;
-	return this.replace(/{(\d+)}/g, function (match, number) { 
+	return this.replace(/{(\d+)}/g, function (match, number) {
 	  return typeof args[number] != 'undefined' ? args[number] : match;
 	});
 };
@@ -51,6 +51,10 @@ String.prototype.format = function () {
 		return world.walkthroughs;
 	};
 
+	questkit.allScripts = function() {
+		return world.scripts;
+	};
+
 	questkit.commandRegex = function (command) {
 		return world.regexes[command];
 	};
@@ -66,7 +70,7 @@ String.prototype.format = function () {
 	};
 
 	questkit.objectPronoun = function (object) {
-		return get(object, 'objectpronoun') || questkit.defaultObjectPronoun(object);
+		return get(object, 'objectpronoun') || questkit.defaultSubjectPronoun(object);
 	};
 
 	questkit.template = function (template) {
@@ -81,6 +85,14 @@ String.prototype.format = function () {
 		var value = world.attributes[attribute];
 		if (value === undefined) return null;
 		return JSON.parse(value);
+	};
+
+	questkit.getscript = function (arg1, arg2) {
+		var attribute = arg1;
+		if (arg2) {
+			attribute = arg1 + '.' + arg2;
+		}
+		return world.scripts[attribute];
 	};
 
 	questkit.set = function (arg1, arg2, arg3, isUndoing) {
@@ -127,16 +139,8 @@ String.prototype.format = function () {
 		set('~undo.current', current);
 	};
 
-	questkit.getscript = function (arg1, arg2) {
-		var attribute = arg1;
-		if (arg2) {
-			attribute = arg1 + '.' + arg2;
-		}
-		return world.scripts[attribute];
-	};
-
-	questkit.msg = function (text) {
-		questkit.ui.addText(text);
+	questkit.msg = function (text, singleline) {
+		questkit.ui.addText(text, singleline);
 	};
 
 	questkit.initPov = function (oldPov) {

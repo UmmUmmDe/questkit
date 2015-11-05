@@ -20,7 +20,7 @@ var questKitVersion = packageJson.version;
 
 String.prototype.format = function () {
     var args = arguments;
-    return this.replace(/{(\d+)}/g, function (match, number) { 
+    return this.replace(/{(\d+)}/g, function (match, number) {
       return typeof args[number] != 'undefined' ? args[number] : match;
     });
 };
@@ -151,7 +151,7 @@ function Compiler() {
             var htmlTemplateFile = fs.readFileSync(this.findFile('index.template.html', outputPath, sourcePath));
             var htmlData = htmlTemplateFile.toString();
             htmlData = htmlData.replace('<!-- INFO -->', '<!--\n\nCreated with QuestKit {0}\n\n\nhttps://github.com/textadventures/questkit\n\n-->'.format(questKitVersion));
-            htmlData = htmlData.replace(/<!-- TITLE -->/g, result.game.title);           
+            htmlData = htmlData.replace(/<!-- TITLE -->/g, result.game.title);
             fs.writeFileSync(path.join(outputPath, 'index.html'), htmlData);
 
             console.log('Copying jquery');
@@ -199,7 +199,7 @@ function Compiler() {
             if (!(type in compiler.sectionTypes)) {
                 throw 'Unknown type - {0}: {1}'.format(type, section[type]);
             }
-            
+
             var name = section[type];
             if (!name) name = '~' + compiler.anonymousCount++;
 
@@ -229,7 +229,7 @@ function Compiler() {
                         direction: compiler.directions[direction],
                         alias: compiler.directions[direction],
                         to: name
-                    });                    
+                    });
 
                     delete section[direction];
                 });

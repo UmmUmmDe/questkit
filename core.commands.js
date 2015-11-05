@@ -46,7 +46,7 @@
 			template = 'TakeSuccessful';
 		}
 		else {
-			template = 'TakeUnsuccessful';	
+			template = 'TakeUnsuccessful';
 		}
 
 		msg ((showName ? questkit.displayAlias(object) + ': ' : '') + questkit.template(template).format(it));
@@ -76,5 +76,34 @@
 		}
 
 		msg ((showName ? questkit.displayAlias(object) + ': ' : '') + questkit.template(template).format(it));
+	};
+
+	questkit.use = function(object, target) {
+		var it = questkit.objectPronoun(object);
+		if (target) {
+			var script = getscript(target, "use[" + object + "]")
+			if (script) {
+				script();
+			} else {
+				msg(questkit.template("CannotUseOn").format(it, object));
+			}
+		} else {
+			var script = getscript(object, "use");
+			if (script) {
+				script();
+			} else {
+				msg(questkit.template("CannotUse").format(it));
+			}
+		}
+	};
+
+	questkit.give = function(object, to) {
+		var given = false;
+
+		if (!given) {
+			var str = questkit.template("DoesNotWant").format(questkit.objectPronoun(to), questkit.objectPronoun(object));
+			str = str.charAt(0).toUpperCase() + str.slice(1);
+			msg(str);
+		}
 	};
 })();

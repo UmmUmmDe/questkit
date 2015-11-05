@@ -78,8 +78,13 @@ take:
 undo:
     - undo
 use:
-	- "use #object#"
-	- "use #object# on #target#"
+    - "use #object#"
+useon:
+    - "use #object# on #object2#"
+xyzzy:
+    - xyzzy
+give:
+    - "give #object# to #object2#"
 
 # Debugging only
 walkthrough:
@@ -95,11 +100,14 @@ defaults:
         - everything
     AlreadyTaken: "You are already carrying {0}."
     And: and
+    CannotUse: "You can't use {0}."
+    CannotUseOn: "You can't use {0} on {1}."
     CarryingListHeader: You are carrying
     ChooseWalkthrough: Choose a walkthrough
     DefaultObjectDescription: Nothing out of the ordinary.
     DefaultSelfDescription: Looking good.
     DisambiguateMenu: 'Please choose which "{0}" you mean'
+    DoesNotWant: "{0} doesn't want {1}."
     DropSuccessful: "You drop {0}."
     DropUnsuccessful: "You can't drop {0}."
     GoListHeader: You can go

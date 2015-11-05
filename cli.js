@@ -5,7 +5,7 @@ var readline = require('readline');
 (function () {
 	'use strict';
 
-	questkit.ui.addText = function (text) {
+	questkit.ui.addText = function (text, singleline) {
 		console.log(text);
 	};
 

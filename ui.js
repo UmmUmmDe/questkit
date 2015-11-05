@@ -7,15 +7,17 @@
 	var outputSections = [];
 	var divCount = -1;
 	var beginningOfCurrentTurnScrollPosition = 0;
-	
-	questkit.ui.addText = function (text) {
+
+	questkit.ui.addText = function (text, singleline) {
 		if (getCurrentDiv() === null) {
 			createNewDiv('left');
 		}
 
-		questkit.ui.output
-			.append(text + '<br/>')
-			.css('min-height', questkit.ui.output.height());
+		if (!singleline) {
+			questkit.ui.output
+				.append(text + '<br/>')
+				.css('min-height', questkit.ui.output.height());
+		}
 	};
 
 	var createNewDiv = function (alignment) {
@@ -126,6 +128,6 @@ $.fn.questkit = function (options) {
 	}
 
 	questkit.ready();
-    
+
     return this;
 };

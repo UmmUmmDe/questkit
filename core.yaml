@@ -168,3 +168,31 @@ patterns:
 isundo: true
 action:
     script: questkit.undo();
+
+---
+command: use
+patterns:
+    template: use
+action:
+    script: questkit.use(object);
+
+---
+command: useon
+patterns:
+    template: useon
+action:
+    script: questkit.use(object, object2);
+
+---
+command: xyzzy
+patterns:
+    template: xyzzy
+action:
+    script: msg("Nothing happens.", true); msg("hi");
+
+---
+command: give
+patterns:
+    template: give
+action:
+    script: questkit.give(object, object2);
