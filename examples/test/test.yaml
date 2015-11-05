@@ -27,7 +27,13 @@ alt:
     - television
     - telly
 look: The TV is an old model, possibly 20 years old. {if TV.switchedon:It is currently showing an old western.}{else:It is currently switched off.}
-watch: You watch for a few minutes. As your will to live slowly ebbs away, you remember that you’ve always hated watching westerns.
+watch:
+    script: |
+        if (get("TV.switchedon")) {
+            msg("You watch for a few minutes. As your will to live slowly ebbs away, you remember that you’ve always hated watching westerns.");
+        } else {
+            msg("You watch for a few minutes before realizing that the TV is still off.");
+        }
 
 ---
 character: Bob
