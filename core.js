@@ -140,6 +140,7 @@ String.prototype.format = function () {
 	};
 
 	questkit.msg = function (text, singleline) {
+		//TODO: Add handling of {if stmt:text} stuff
 		questkit.ui.addText(text, singleline);
 	};
 

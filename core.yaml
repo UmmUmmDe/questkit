@@ -196,3 +196,17 @@ patterns:
     template: give
 action:
     script: questkit.give(object, object2);
+
+---
+command: switchon
+patterns:
+    template: switchon
+action:
+    script: msg("You switch " + questkit.objectPronoun(object) + " on.");
+
+---
+command: switchoff
+patterns:
+    template: switchoff
+action:
+    script: msg("You switch " + questkit.objectPronoun(object) + " off.");

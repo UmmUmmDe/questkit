@@ -85,6 +85,12 @@ xyzzy:
     - xyzzy
 give:
     - "give #object# to #object2#"
+switchon:
+    - "switch #object# on"
+    - "turn #object# on"
+switchoff:
+    - "switch #object# off"
+    - "turn #object# off"
 
 # Debugging only
 walkthrough:
