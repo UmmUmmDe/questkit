@@ -101,7 +101,7 @@
 		var given = false;
 
 		if (!given) {
-			var str = questkit.template("DoesNotWant").format(questkit.subjectPronoun(to), questkit.subjectPronoun(object));
+			var str = questkit.template("DoesNotWant").format(questkit.subjectPronoun(to), questkit.objectPronoun(object));
 			str = str.charAt(0).toUpperCase() + str.slice(1);
 			msg(str);
 		}
