@@ -106,4 +106,8 @@
 			msg(str);
 		}
 	};
+
+	questkit.switch = function(object, mode) {
+		set(object + ".switchedon", mode);
+	};
 })();

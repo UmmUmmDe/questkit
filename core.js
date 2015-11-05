@@ -141,7 +141,54 @@ String.prototype.format = function () {
 
 	questkit.msg = function (text, singleline) {
 		//TODO: Add handling of {if stmt:text} stuff
-		questkit.ui.addText(text, singleline);
+		var done = false;
+		var str = text;
+		var wasIf = false;
+		while (!done) {
+			var index = 0;
+			if (str.charAt(0) != "{") {
+				index = str.search(/[^\\]{/);
+			}
+			if (index != -1) {
+				if (index == 0) {
+					str = str.slice(index);
+				} else {
+					str = str.slice(index + 1);
+				}
+				var cmd = "";
+				index = str.indexOf(":");
+				cmd = str.substring(1, index).split(" ");
+				str = str.substring(index + 1);
+				index = str.search(/[^\\]}/);
+				if (index == -1) {
+					str = "Unmatched {!";
+					done = true;
+				} else {
+					var tempstr = str.substring(0, index + 1);
+					var out = false;
+					if (cmd[0] === "if") {
+						wasIf = false;
+						if (get(cmd[1])) {
+							out = true;
+							wasIf = true;
+						}
+					} else if (cmd[0] === "else") {
+						if (!wasIf) {
+							out = true;
+						}
+					}
+					if (out) {
+						questkit.ui.addText(tempstr, singleline);
+						str = str.substring(index + 2);
+					}
+				}
+			} else if (index == -1) {
+				done = true;
+			}
+		}
+		if (str === text) {
+			questkit.ui.addText(text);
+		}
 	};
 
 	questkit.initPov = function (oldPov) {

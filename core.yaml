@@ -202,11 +202,11 @@ command: switchon
 patterns:
     template: switchon
 action:
-    script: msg("You switch " + questkit.objectPronoun(object) + " on.");
+    script: msg("You switch " + questkit.objectPronoun(object) + " on."); questkit.switch(object, true);
 
 ---
 command: switchoff
 patterns:
     template: switchoff
 action:
-    script: msg("You switch " + questkit.objectPronoun(object) + " off.");
+    script: msg("You switch " + questkit.objectPronoun(object) + " off."); questkit.switch(object, false);
