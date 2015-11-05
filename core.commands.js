@@ -79,7 +79,7 @@
 	};
 
 	questkit.use = function(object, target) {
-		var it = questkit.objectPronoun(object);
+		var it = questkit.subjectPronoun(object);
 		if (target) {
 			var script = getscript(target, "use[" + object + "]")
 			if (script) {
@@ -101,7 +101,7 @@
 		var given = false;
 
 		if (!given) {
-			var str = questkit.template("DoesNotWant").format(questkit.objectPronoun(to), questkit.objectPronoun(object));
+			var str = questkit.template("DoesNotWant").format(questkit.subjectPronoun(to), questkit.subjectPronoun(object));
 			str = str.charAt(0).toUpperCase() + str.slice(1);
 			msg(str);
 		}

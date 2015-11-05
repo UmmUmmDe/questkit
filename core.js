@@ -70,7 +70,7 @@ String.prototype.format = function () {
 	};
 
 	questkit.objectPronoun = function (object) {
-		return get(object, 'objectpronoun') || questkit.defaultSubjectPronoun(object);
+		return get(object, 'objectpronoun') || questkit.defaultObjectPronoun(object);
 	};
 
 	questkit.template = function (template) {
