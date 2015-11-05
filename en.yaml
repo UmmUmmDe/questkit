@@ -77,6 +77,9 @@ take:
     - "pick up #objects#"
 undo:
     - undo
+use:
+	- "use #object#"
+	- "use #object# on #target#"
 
 # Debugging only
 walkthrough:
