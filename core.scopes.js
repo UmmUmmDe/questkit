@@ -81,7 +81,9 @@
 		var searchParent = get(search, 'parent');
 		if (!searchParent) return false;
 		if (get(search, 'visible') === false) return false;
-		if (get(parent, 'darklevel') && !get(search, 'lightsource')) return false;
+		if (get(parent, "dark") && !questkit.containsStrongLight(questkit.getDirectChildren(parent)) && get(search, "light") !== "weak") {
+			return false;
+		}
 		if (searchParent == parent) return true;
 
 		var canAdd;

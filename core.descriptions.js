@@ -1,19 +1,21 @@
-/* jshint quotmark: single */
-
 (function () {
 	'use strict';
 
 	questkit.showLocationDescription = function () {
 		// TODO: Customisable description order
-		// TODO: Darkness
 		// TODO: Option to not use "You are in"
 
 		var povParent = questkit.povParent();
+		var dark = get(povParent, "dark");
 
 		var descprefix = get(povParent, 'descprefix') || questkit.template('YouAreIn');
 		msg(descprefix + ' ' + displayName(povParent, true) + '.');
 
 		var objects = questkit.removeSceneryObjects(questkit.getAllChildrenContainers(questkit.getNonTransparentParent(povParent)));
+		if (dark && questkit.containsStrongLight(objects)) {
+			dark = false;
+		}
+		objects = dark ? questkit.removeDarkObjects(objects) : objects;
 		var youCanSee = questkit.formatList(
 			get(povParent, 'objectslistprefix') || questkit.template('SeeListHeader'),
 			objects,
@@ -22,15 +24,17 @@
 		);
 		if (youCanSee) msg(youCanSee);
 
+		var exits = questkit.removeSceneryExits(questkit.scopeExits());
+		exits = dark ? questkit.removeDarkObjects(exits) : exits;
 		var youCanGo = questkit.formatList(
 			get(povParent, 'exitslistprefix') || questkit.template('GoListHeader'),
-			questkit.removeSceneryExits(questkit.scopeExits()),
+			exits,
 			questkit.template('Or'),
 			false
 		);
 		if (youCanGo) msg(youCanGo);
 
-		var description = get(povParent, 'description');
+		var description = dark ? questkit.template("DarkRoom") : get(povParent, 'description');
 		if (description) msg(description);
 	};
 
@@ -69,6 +73,17 @@
 		return result.join('');
 	};
 
+	questkit.containsStrongLight = function(list) {
+		var result = false;
+		list.forEach(function(obj) {
+			var light = get(obj, "light");
+			if (light === "strong") {
+				result = true;
+			}
+		});
+		return result;
+	};
+
 	questkit.removeSceneryObjects = function (list) {
 		var pov = get('pov');
 		return list.filter(function (item) {
@@ -79,6 +94,16 @@
 	questkit.removeSceneryExits = function (list) {
 		return list.filter(function (item) {
 			return !get(item, 'scenery');
+		});
+	};
+
+	questkit.removeDarkObjects = function(list) {
+		return list.filter(function(item) {
+			if (!get(item, "light") || get(item, "light") == "dark") {
+				return false;
+			} else {
+				return true;
+			}
 		});
 	};
 

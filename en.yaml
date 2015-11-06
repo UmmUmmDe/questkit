@@ -120,6 +120,7 @@ defaults:
     ChooseWalkthrough: Choose a walkthrough
     Close: "You close {0}."
     ContainerClosed: "{0} is closed!"
+    DarkRoom: The room is dark enough that you cannot see.
     DefaultObjectDescription: Nothing out of the ordinary.
     DefaultSelfDescription: Looking good.
     DisambiguateMenu: 'Please choose which "{0}" you mean'

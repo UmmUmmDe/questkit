@@ -135,11 +135,34 @@ to: shed
 
 ---
 location: shed
+description: Just a tool shed.
+dark: true
 
 ---
 exit:
 direction: out
 to: garden
+light: weak
+
+---
+object: toolbox
+container: true
+look: A toolbox. {if toolbox.isopen:It is open.}{else:It is closed.}
+
+---
+object: screwdriver
+parent: toolbox
+take: true
+look: Just a screwdriver.
+
+---
+object: lightswitch
+switchable: true
+switchon:
+    script: set("lightswitch", "light", "strong");
+switchoff:
+    script: set("lightswitch", "light", "weak");
+light: weak
 
 ---
 walkthrough: test
@@ -160,10 +183,3 @@ steps:
     - x eggs
     - weigh eggs
     - n
-
----
-walkthrough: test 2
-steps:
-    - test bob and lamp
-    - x b
-    - 1

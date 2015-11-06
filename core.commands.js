@@ -106,7 +106,14 @@
 	};
 
 	questkit.switch = function(object, mode) {
-		set(object + ".switchedon", mode);
+		if (get(object, "switchable")) {
+			set(object + ".switchedon", mode);
+			var str = mode ? "on": "off";
+			var script = getscript(object, "switch" + str);
+			if (script) {
+				script();
+			}
+		}
 	};
 
 	questkit.open = function(object) {
