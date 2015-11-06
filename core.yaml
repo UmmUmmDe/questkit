@@ -169,6 +169,7 @@ isundo: true
 action:
     script: questkit.undo();
 
+#Begin commands added by MarkSill
 ---
 command: use
 patterns:
@@ -210,3 +211,24 @@ patterns:
     template: switchoff
 action:
     script: msg("You switch " + questkit.objectPronoun(object) + " off."); questkit.switch(object, false);
+
+---
+command: open
+patterns:
+    template: open
+action:
+    script: questkit.open(object);
+
+---
+command: close
+patterns:
+    template: close
+action:
+    script: questkit.close(object);
+
+---
+command: putin
+patterns:
+    template: putin
+action:
+    script: questkit.putin(object, object2);

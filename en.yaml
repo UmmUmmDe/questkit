@@ -91,6 +91,12 @@ switchon:
 switchoff:
     - "switch #object# off"
     - "turn #object# off"
+open:
+	- "open #object#"
+close:
+	- "close #object#"
+putin:
+	- "put #object# in #object2#"
 
 # Debugging only
 walkthrough:

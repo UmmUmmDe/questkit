@@ -1,7 +1,5 @@
-/* jshint quotmark: single */
-
 (function () {
-	'use strict';
+	"use strict";
 
 	questkit.goDirection = function (direction) {
 		// TODO: Locked exits, exits with scripts
@@ -78,17 +76,19 @@
 		msg ((showName ? questkit.displayAlias(object) + ': ' : '') + questkit.template(template).format(it));
 	};
 
+	//Begin functions added by MarkSill
 	questkit.use = function(object, target) {
 		var it = questkit.subjectPronoun(object);
+		var script;
 		if (target) {
-			var script = getscript(target, "use[" + object + "]")
+			script = getscript(target, "use[" + object + "]");
 			if (script) {
 				script();
 			} else {
 				msg(questkit.template("CannotUseOn").format(it, object));
 			}
 		} else {
-			var script = getscript(object, "use");
+			script = getscript(object, "use");
 			if (script) {
 				script();
 			} else {
@@ -109,5 +109,17 @@
 
 	questkit.switch = function(object, mode) {
 		set(object + ".switchedon", mode);
+	};
+
+	questkit.open = function(object) {
+
+	};
+
+	questkit.close = function(object) {
+
+	};
+
+	questkit.putin = function(object, container) {
+
 	};
 })();
