@@ -4,14 +4,15 @@
   "description": "QuestKit",
   "repository": {
     "type": "git",
-    "url": "https://github.com/textadventures/questkit.git"
+    "url": "https://github.com/marksill/questkit.git"
   },
   "author": "Alex Warren <alex@textadventures.co.uk>",
+  "contributors": ["MarkSill <marksillweb@gmail.com> (https://marksill.com)"],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/textadventures/questkit/issues"
+    "url": "https://github.com/marksill/questkit/issues"
   },
-  "homepage": "https://github.com/textadventures/questkit",
+  "homepage": "https://github.com/marksill/questkit",
   "bin": "./questkit.js",
   "preferGlobal": true,
   "dependencies": {

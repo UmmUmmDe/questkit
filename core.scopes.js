@@ -71,7 +71,7 @@
 		if (get(search, 'visible') === false) return false;
 		if (get(parent, 'darklevel') && !get(search, 'lightsource')) return false;
 		if (searchParent == parent) return true;
-		
+
 		var canAdd;
 		if (onlyReachable) {
 			canAdd = questkit.canReachThrough(searchParent);

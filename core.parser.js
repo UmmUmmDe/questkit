@@ -1,6 +1,6 @@
 /* jshint quotmark: single */
 
-(function () {
+(function() {
 	'use strict';
 
 	// The idea of getMatchStrength is that you have a regex like
@@ -10,7 +10,7 @@
 	// The strength is the length of the "fixed" bit of the string, in this case "look at ".
 	// So we calculate this as the length of the input string, minus the length of the
 	// text that matches the groups.
-	
+
 	var getMatchStrength = function (regex, input) {
 		var lengthOfTextMatchedByGroups = 0;
 		var matches = regex.exec(input);
@@ -39,7 +39,7 @@
 				var match = pattern.exec(input);
 				if (match) {
 					var matchStrength = getMatchStrength(pattern, input);
-					
+
 					// Core library commands are defined after game commands, so strength
 					// has to be greater for a command to "win". An exception is if the current
 					// winner has no parent, and the candidate does - a locally defined command
@@ -106,7 +106,7 @@
 
 		if (resolveScope) {
 			var result;
-			if (getscript(command, 'multiple')) {				
+			if (getscript(command, 'multiple')) {
 				result = resolveNameList(args[index], resolveScope, command);
 			}
 			else {
@@ -161,7 +161,7 @@
 		var resolved = false;
 		var pending = false;
 		name = name.toLowerCase();
-		
+
 		scope.forEach(function (object) {
 			compareNames(name, questkit.displayAlias(object).toLowerCase(), object, fullMatches, partialMatches);
 			var alt = get(object, 'alt');

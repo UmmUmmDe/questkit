@@ -140,7 +140,7 @@ String.prototype.format = function () {
 	};
 
 	questkit.msg = function (text, singleline) {
-		//TODO: Add handling of {if stmt:text} stuff
+		//TODO: Make this more pretty.
 		var done = false;
 		var str = text;
 		var wasIf = false;

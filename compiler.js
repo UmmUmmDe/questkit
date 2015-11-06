@@ -150,7 +150,7 @@ function Compiler() {
 
             var htmlTemplateFile = fs.readFileSync(this.findFile('index.template.html', outputPath, sourcePath));
             var htmlData = htmlTemplateFile.toString();
-            htmlData = htmlData.replace('<!-- INFO -->', '<!--\n\nCreated with QuestKit {0}\n\n\nhttps://github.com/textadventures/questkit\n\n-->'.format(questKitVersion));
+            htmlData = htmlData.replace('<!-- INFO -->', '<!--\n\nCreated with QuestKit {0}\n\n\nhttps://github.com/marksill/questkit\n\n-->'.format(questKitVersion));
             htmlData = htmlData.replace(/<!-- TITLE -->/g, result.game.title);
             fs.writeFileSync(path.join(outputPath, 'index.html'), htmlData);
 
