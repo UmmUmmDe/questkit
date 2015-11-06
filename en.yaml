@@ -110,12 +110,16 @@ defaults:
     AllObjects:
         - all
         - everything
+    AlreadyClosed: "{0} is already closed."
+    AlreadyOpen: "{0} is already open."
     AlreadyTaken: "You are already carrying {0}."
     And: and
     CannotUse: "You can't use {0}."
     CannotUseOn: "You can't use {0} on {1}."
     CarryingListHeader: You are carrying
     ChooseWalkthrough: Choose a walkthrough
+    Close: "You close {0}."
+    ContainerClosed: "{0} is closed!"
     DefaultObjectDescription: Nothing out of the ordinary.
     DefaultSelfDescription: Looking good.
     DisambiguateMenu: 'Please choose which "{0}" you mean'
@@ -125,8 +129,11 @@ defaults:
     GoListHeader: You can go
     NotCarrying: "You are not carrying {0}."
     NotCarryingAnything: You are not carrying anything.
+    NotContainer: "{0} is not a container."
     NothingToUndo: Nothing to undo!
     Or: or
+    Open: "You open {0}."
+    PutIn: "You put {0} in {1}."
     SeeListHeader: You can see
     SelfAlias: me
     SelfAlt:

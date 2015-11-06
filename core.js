@@ -100,7 +100,7 @@ String.prototype.format = function () {
 	questkit.set = function (arg1, arg2, arg3, isUndoing) {
 		var attribute = arg1;
 		var value = arg2;
-		if (arg3) {
+		if (arg3 !== undefined) {
 			attribute = arg1 + '.' + arg2;
 			value = arg3;
 		}
@@ -146,6 +146,7 @@ String.prototype.format = function () {
 		var done = false;
 		var str = text;
 		var wasIf = false;
+		var output = "";
 		while (!done) {
 			var index = 0;
 			if (str.charAt(0) != "{") {
@@ -180,7 +181,7 @@ String.prototype.format = function () {
 						}
 					}
 					if (out) {
-						questkit.ui.addText(tempstr, singleline);
+						output += tempstr;
 						str = str.substring(index + 2);
 					}
 				}
@@ -189,8 +190,9 @@ String.prototype.format = function () {
 			}
 		}
 		if (str === text) {
-			questkit.ui.addText(text);
+			output = text;
 		}
+		questkit.ui.addText(questkit.capitalize(output));
 	};
 
 	questkit.initPov = function (oldPov) {
@@ -209,6 +211,10 @@ String.prototype.format = function () {
 		set(pov, 'alias', get(pov, 'povalias'));
 		set(pov, 'alt', get(pov, 'povalt'));
 		set(pov, 'look', get(pov, 'povlook'));
+	};
+
+	questkit.capitalize = function(str) {
+		return str.charAt(0).toUpperCase() + str.slice(1);
 	};
 })();
 

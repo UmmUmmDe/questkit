@@ -99,16 +99,19 @@ closed: true
 object: milk
 parent: fridge
 prefix: some
+take: true
 
 ---
 object: cheese
 parent: fridge
 prefix: some
+take: true
 
 ---
 object: beer
 parent: fridge
 prefix: some
+take: true
 
 ---
 location: xoverride

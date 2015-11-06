@@ -1,5 +1,3 @@
-/* jshint quotmark: single */
-
 (function () {
 	'use strict';
 
@@ -30,6 +28,11 @@
 		questkit.getAllChildObjects(location).forEach(function (object) {
 			if (questkit.containsReachable(location, object) && object != pov && !questkit.contains(pov, object)) {
 				result.push(object);
+				if (get(object, "container") && get(object, "isopen")) {
+					questkit.getAllChildObjects(object).forEach(function(obj) {
+						result.push(obj);
+					});
+				}
 			}
 		});
 		if (location == get(pov, 'parent')) {
@@ -38,12 +41,17 @@
 		return result;
 	};
 
-	var getChildObjects = function (object, recurse) {
+	var getChildObjects = function (object, recurse, containers) {
 		var result = [];
 		questkit.allObjects().forEach(function (child) {
 			if (get(child, 'parent') == object) {
 				result.push(child);
-				if (recurse) result = result.concat(getChildObjects(child, true));
+				if (recurse) {
+					var goOn = (!containers || (get(child, "container") && get(child, "isopen")));
+					if (goOn) {
+						result = result.concat(getChildObjects(child, true, containers));
+					}
+				}
 			}
 		});
 		return result;
@@ -51,6 +59,10 @@
 
 	questkit.getAllChildObjects = function (object) {
 		return getChildObjects(object, true);
+	};
+
+	questkit.getAllChildrenContainers = function(object) {
+		return getChildObjects(object, true, true);
 	};
 
 	questkit.getDirectChildren = function (object) {
@@ -81,7 +93,7 @@
 		}
 
 		if (canAdd) {
-			return (questkit.containsAccessible(parent, searchParent, onlyReachable));
+			return (containsAccessible(parent, searchParent, onlyReachable));
 		} else {
 			return false;
 		}
@@ -110,9 +122,14 @@
 	questkit.scopeInventory = function () {
 		var result = [];
 		var pov = get('pov');
-		questkit.getAllChildObjects(pov).forEach(function (object) {
+		questkit.getAllChildObjects(pov).forEach(function(object) {
 			if (questkit.containsVisible(pov, object)) {
 				result.push(object);
+				if (get(object, "container") && get(object, "isopen")) {
+					questkit.getAllChildObjects(object).forEach(function(obj) {
+						result.push(obj);
+					});
+				}
 			}
 		});
 		return result;

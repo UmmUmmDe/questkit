@@ -101,9 +101,7 @@
 		var given = false;
 
 		if (!given) {
-			var str = questkit.template("DoesNotWant").format(questkit.subjectPronoun(to), questkit.objectPronoun(object));
-			str = str.charAt(0).toUpperCase() + str.slice(1);
-			msg(str);
+			msg(questkit.template("DoesNotWant").format(questkit.subjectPronoun(to), questkit.objectPronoun(object)));
 		}
 	};
 
@@ -112,14 +110,39 @@
 	};
 
 	questkit.open = function(object) {
-
+		if (get(object, "container")) {
+			if (get(object, "isopen")) {
+				msg(questkit.template("AlreadyOpen").format(questkit.subjectPronoun(object)));
+			} else {
+				msg(questkit.template("Open").format(questkit.subjectPronoun(object)));
+				set(object, "isopen", true);
+			}
+		} else {
+			msg(questkit.template("NotContainer").format(questkit.subjectPronoun(object)));
+		}
 	};
 
 	questkit.close = function(object) {
-
+		if (get(object, "container")) {
+			if (get(object, "isopen")) {
+				msg(questkit.template("Close").format(questkit.subjectPronoun(object)));
+				set(object, "isopen", null);
+			} else {
+				msg(questkit.template("AlreadyClosed").format(questkit.subjectPronoun(object)));
+			}
+		} else {
+			msg(questkit.template("NotContainer").format(questkit.subjectPronoun(object)));
+		}
 	};
 
 	questkit.putin = function(object, container) {
-
+		if (get(container, "container")) {
+			if (get(container, "isopen")) {
+				set(object, "parent", container);
+				msg(questkit.template("PutIn").format(questkit.objectPronoun(object), questkit.subjectPronoun(container)));
+			} else {
+				msg(questkit.template("ContainerClosed").format(questkit.subjectPronoun(container)));
+			}
+		}
 	};
 })();

@@ -9,11 +9,11 @@
 		// TODO: Option to not use "You are in"
 
 		var povParent = questkit.povParent();
-		
+
 		var descprefix = get(povParent, 'descprefix') || questkit.template('YouAreIn');
 		msg(descprefix + ' ' + displayName(povParent, true) + '.');
-		
-		var objects = questkit.removeSceneryObjects(questkit.getDirectChildren(questkit.getNonTransparentParent(povParent)));
+
+		var objects = questkit.removeSceneryObjects(questkit.getAllChildrenContainers(questkit.getNonTransparentParent(povParent)));
 		var youCanSee = questkit.formatList(
 			get(povParent, 'objectslistprefix') || questkit.template('SeeListHeader'),
 			objects,
