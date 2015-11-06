@@ -1,5 +1,3 @@
-/* jshint quotmark: single */
-
 var questkit = {};
 questkit.ui = {};
 
@@ -74,7 +72,11 @@ String.prototype.format = function () {
 	};
 
 	questkit.template = function (template) {
-		return world.templates[template];
+		var t = world.templates[template];
+		if (!t) {
+			t = template;
+		}
+		return t;
 	};
 
 	questkit.get = function (arg1, arg2) {
@@ -140,7 +142,7 @@ String.prototype.format = function () {
 	};
 
 	questkit.msg = function (text, singleline) {
-		//TODO: Make this more pretty.
+		//TODO: Make this more pretty (or at least less messy).
 		var done = false;
 		var str = text;
 		var wasIf = false;
@@ -150,7 +152,7 @@ String.prototype.format = function () {
 				index = str.search(/[^\\]{/);
 			}
 			if (index != -1) {
-				if (index == 0) {
+				if (index === 0) {
 					str = str.slice(index);
 				} else {
 					str = str.slice(index + 1);
