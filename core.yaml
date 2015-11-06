@@ -189,7 +189,7 @@ command: xyzzy
 patterns:
     template: xyzzy
 action:
-    script: msg("Nothing happens.", true); msg("hi");
+    script: msg("Nothing happens.");
 
 ---
 command: give
