@@ -74,7 +74,7 @@ String.prototype.format = function () {
 	questkit.template = function (template) {
 		var t = world.templates[template];
 		if (!t) {
-			t = template;
+			t = "Undefined template: " + template;
 		}
 		return t;
 	};
