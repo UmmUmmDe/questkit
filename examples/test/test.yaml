@@ -178,12 +178,29 @@ steps:
     - assert: get('player.parent') == 'lounge'
     - s
     - assert: get('player.parent') == 'kitchen'
-    - undo
+    - n
     - assert: get('player.parent') == 'lounge'
     - assert: get('defibrillator.parent') == 'player'
-    - undo
+    - use def on bob
+    - drop def
     - assert: get('defibrillator.parent') == 'lounge'
     - s
     - x eggs
     - weigh eggs
+    - open fridge
+    - put eggs in fridge
+    - take milk
+    - e
+    - go shed
+    - x toolbox
+    - turn lightswitch on
+    - x toolbox
+    - open toolbox
+    - take screwdriver
+    - close toolbox
+    - out
+    - w
+    - put screwdriver in fridge
+    - l
+    - close fridge
     - n
