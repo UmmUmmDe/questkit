@@ -1,5 +1,9 @@
 title: Test Game
 
+#---
+#settings:
+    #youarein: false
+
 ---
 command:
 pattern: "say #text#"

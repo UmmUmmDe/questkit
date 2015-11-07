@@ -1,5 +1,3 @@
-/* jshint quotmark: single */
-
 exports.generate = function (inputFilename, sourcePath, options) {
     var compiler = new Compiler();
     return compiler.generate(inputFilename, sourcePath, options);
@@ -30,6 +28,7 @@ function Compiler() {
 
     this.process = function (inputFile, inputPath, sourcePath, options) {
         this.language = yaml.safeLoad(fs.readFileSync(path.join(sourcePath, 'en.yaml')));
+        var settings = null;
 
         var sections = [];
         var storyJs = typeof options.scriptonly === 'string' ? options.scriptonly : 'story.js';
@@ -92,6 +91,10 @@ function Compiler() {
 
                 if (!firstLocation && section['~type'] == 'location') {
                     firstLocation = section['~name'];
+                }
+
+                if (section['~name'] === 'settings') {
+                    settings = section;
                 }
             });
 
@@ -203,6 +206,13 @@ function Compiler() {
             var name = section[type];
             if (!name) name = '~' + compiler.anonymousCount++;
 
+            if (type == "settings") {
+                /*sections.push({
+                    '~name': "~" + compiler.anonymousCount++,
+                    parent: name
+                });*/
+            }
+
             if (type == 'location') {
                 // set default parent to this for subsequent objects, exits etc.
                 defaultParent = name;
@@ -267,6 +277,7 @@ function Compiler() {
         'character': 'objects',
         'exit': 'exits',
         'walkthrough': 'walkthroughs',
+        //'settings': 'settings'
     };
 
     // directions and their opposites
@@ -293,7 +304,9 @@ function Compiler() {
         var name = section['~name'];
         outputJsFile.push('initData.{0}.push(\'{1}\');\n'.format(this.sectionTypes[type], name));
 
-        if (type == 'command') {
+        if (type === "settings") {
+
+        } else if (type == 'command') {
             var patterns = [];
             if (!section.patterns) section.patterns = [];
             if (section.pattern) {
