@@ -150,6 +150,8 @@
 			} else {
 				msg(questkit.template("ContainerClosed").format(questkit.subjectPronoun(container)));
 			}
+		} else {
+			msg(questkit.template("NotContainer").format(questkit.subjectPronoun(container)));
 		}
 	};
 })();
